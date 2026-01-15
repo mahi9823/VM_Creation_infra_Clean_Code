@@ -26,7 +26,7 @@ module "key_vault" {
 module "sql_server" {
   depends_on      = [module.resource_group]
   source          = "../module/azurerm_sql_server"
-  sql_server_name = "sql-dev-todoapp"
+  sql_server_name = "serverguru"
   rg_name         = var.rgs["rg1"].name
   location        = var.rgs["rg1"].location
   admin_username  = "devopsadmin"
@@ -37,7 +37,7 @@ module "sql_server" {
 module "sql_db" {
   depends_on  = [module.sql_server]
   source      = "../module/azurerm_sql_database"
-  sql_db_name = "sqldb-dev-todoapp"
+  sql_db_name = "sdbguru"
   server_id   = module.sql_server.server_id
   max_size_gb = "2"
   tags        = {}
